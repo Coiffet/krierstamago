@@ -5,6 +5,7 @@ function m_Enemy()
 	this.dx;
 	this.dy;
 	this.type;
+	this.cooldown;
 	
 	this.spr_m_enemy = new Image();
 	this.spr_m_enemy.src = "./res/m_enemy.png";
@@ -17,6 +18,7 @@ function m_Enemy()
 		this.dy = richtingy;
 		this.type = enemytype;
 		this.visible = 1;
+		this.cooldown = 0;
 	}
 	
 	this.Draw = function()

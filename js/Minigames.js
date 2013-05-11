@@ -26,6 +26,7 @@ function Minigames()
 		this.MAXENEMIES = 5;
 		this.player.lives = 3;
 		this.player.Init();
+		this.enemy = [];
 		
 		for (var i = 0; i < this.MAXENEMIES; i++)
 		{
@@ -70,7 +71,8 @@ function Minigames()
 		{
 			this.player.score++;
 			this.MAXENEMIES++;
-			this.enemy[this.MAXENEMIES].Init(Math.floor((Math.random()*310)+1),
+			this.enemy.push(new m_Enemy());
+			this.enemy[this.MAXENEMIES - 1].Init(Math.floor((Math.random()*310)+1),
 										     Math.floor((Math.random()*230)+1),
 										     Math.floor((Math.random()*10)+1),
 										     Math.floor((Math.random()*10)+1),
@@ -85,9 +87,11 @@ function Minigames()
 		{
 			this.enemy[i].Draw();
 			this.enemy[i].Handle(0);
+			this.enemy[i].cooldown--;
 			
-			if(CheckCollision(this.player.x, this.player.y, this.enemy[i].x, this.enemy[i].y, 28))
+			if(CheckCollision(this.player.x, this.player.y, this.enemy[i].x, this.enemy[i].y, 28) && this.enemy[i].cooldown < 0)
 			{
+				this.enemy[i].cooldown = 10; //10frame cooldown after being hit before you can take damage from this enemy again
 				this.player.lives--;
 				this.enemy[i].dx = -this.enemy[i].dx;
 				this.enemy[i].dy = -this.enemy[i].dy;
