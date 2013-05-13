@@ -335,7 +335,8 @@ $("#btn_shop_kriers").click(function()
 {
 	if (pet.coins >= 99999)
 	{
-		//draw santa hat on pet enabled
+		pet.has_hat = true;
+		pet.spr_pet_hat.src = "./res/poop.png";
 	}
 });
 
