@@ -4,6 +4,8 @@ function c_Pet(ctx)
 	this.spr_pet.src = "./res/pet.png";
 	this.spr_pet_dead = new Image();
 	this.spr_pet_dead.src = "./res/pet_dead.png";
+	this.spr_pet_hat = new Image();
+	this.has_hat = false;
 	
 	this.x;
 	this.y;
@@ -36,8 +38,18 @@ function c_Pet(ctx)
 	
 	this.Draw = function()
 	{
-		if (!this.health <= 0) ctx.drawImage(this.spr_pet, this.x, this.y);
-		else ctx.drawImage(this.spr_pet_dead, this.x, this.y);
+		if (!this.health <= 0)
+		{
+			ctx.drawImage(this.spr_pet, this.x, this.y);
+			if (this.has_hat)
+			{
+				ctx.drawImage(this.spr_pet_hat, this.x + 25, this.y - 45);
+			}
+		}
+		else 
+		{
+			ctx.drawImage(this.spr_pet_dead, this.x, this.y);
+		}
 	}
 	
 	this.Handle = function()

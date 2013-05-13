@@ -72,8 +72,15 @@ function Minigames()
 			this.player.score++;
 			this.MAXENEMIES++;
 			this.enemy.push(new m_Enemy());
-			this.enemy[this.MAXENEMIES - 1].Init(Math.floor((Math.random()*310)+1),
-										     Math.floor((Math.random()*230)+1),
+			var enemyX = Math.floor((Math.random()*310)+1);
+			var enemyY = Math.floor((Math.random()*230)+1);
+			while(CheckCollision(this.player.x, this.player.y, enemyX, enemyY, 100))
+			{
+				enemyX = Math.floor((Math.random()*310)+1);
+				enemyY = Math.floor((Math.random()*230)+1);
+			}
+			this.enemy[this.MAXENEMIES - 1].Init(enemyX,
+										     enemyY,
 										     Math.floor((Math.random()*10)+1),
 										     Math.floor((Math.random()*10)+1),
 										     0);

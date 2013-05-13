@@ -50,8 +50,8 @@ function c_Player(ctx)
 		this.x = pet.x;
 		this.y = pet.y;
 		
-		if (pet.health >= 0) pet.health -= 20;
-		if (pet.affection >= 0) pet.affection -= 300;
+		if (pet.health > 0) pet.health -= 20;
+		if (pet.affection > 0) pet.affection -= 300;
 	}
 	
 	this.ForcePoop = function()
